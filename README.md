@@ -27,5 +27,5 @@ Este projeto ilustra o comportamento dos operadores de comparação em JavaScrip
    - Compara valores **e** tipos de dados
    - Exemplo: `30 === '30'` → `false`
 
-### Casos de Teste
+
 
