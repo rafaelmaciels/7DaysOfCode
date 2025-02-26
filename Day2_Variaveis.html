@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Perguntas</title>
+    <script>
+        function mainProgram() {
+            let nome = prompt("Qual o seu nome?");
+            let idade = prompt("Quantos anos você tem?");
+            let linguagem = prompt("Qual linguagem de programação você está estudando?");
+
+            alert(`Olá ${nome}, você tem ${idade} anos e já está aprendendo ${linguagem}!`);
+
+            let resposta = prompt(`Você gosta de estudar ${linguagem}? Responda com o número 1 para SIM ou 2 para NÃO.`);
+
+            if (resposta === "1") {
+                alert("Muito bom! Continue estudando e você terá muito sucesso.");
+            } else if (resposta === "2") {
+                alert("Ahh que pena... Já tentou aprender outras linguagens?");
+            } else {
+                alert("Resposta inválida.");
+            }
+        }
+    </script>
+</head>
+<body onload="mainProgram()">
+    <h1>Bem-vindo ao Programa de Perguntas!</h1>
+    <p>Ao carregar a página, você será solicitado a responder algumas perguntas.</p>
+</body>
+</html>
