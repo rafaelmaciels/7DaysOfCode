@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo de Carreira em TI</title>
+    <script>
+        function iniciarJogo() {
+            // Passo 1: Escolha inicial Front-End ou Back-End
+            let area = prompt("Você quer seguir para Front-End ou Back-End?\n(Digite exatamente como mostrado)").toLowerCase();
+            
+            // Validação da área escolhida
+            while(area !== "front-end" && area !== "back-end") {
+                area = prompt("Opção inválida! Escolha entre:\nFront-End ou Back-End").toLowerCase();
+            }
+
+            // Passo 2: Escolha da tecnologia específica
+            let tecnologia;
+            if(area === "front-end") {
+                tecnologia = prompt("Escolha entre React ou Vue:").toLowerCase();
+                while(tecnologia !== "react" && tecnologia !== "vue") {
+                    tecnologia = prompt("Opção inválida! Escolha entre:\nReact ou Vue").toLowerCase();
+                }
+            } else {
+                tecnologia = prompt("Escolha entre C# ou Java:").toLowerCase();
+                while(tecnologia !== "c#" && tecnologia !== "java") {
+                    tecnologia = prompt("Opção inválida! Escolha entre:\nC# ou Java").toLowerCase();
+                }
+            }
+
+            // Passo 3: Escolha de especialização
+            let especializacao = prompt(
+                `Deseja:
+                1 - Continuar se especializando em ${tecnologia}
+                2 - Tornar-se Fullstack
+                (Digite 1 ou 2)`
+            );
+
+            // Processamento da escolha
+            if(especializacao === "1") {
+                alert(`Ótima escolha! Dominar ${tecnologia} é fundamental para ${area}!`);
+            } else if(especializacao === "2") {
+                alert("Excelente! Desenvolvedores Fullstack são muito valorizados!");
+            } else {
+                alert("Opção não reconhecida, vamos considerar Fullstack como padrão!");
+            }
+
+            // Passo 4: Lista de tecnologias
+            let tecnologias = [];
+            let continuar = true;
+            
+            alert("Agora vamos listar tecnologias que você deseja aprender!");
+            
+            while(continuar) {
+                let novaTech = prompt("Digite uma tecnologia que deseja aprender:");
+                if(novaTech) {
+                    tecnologias.push(novaTech);
+                    alert(`Você adicionou: ${novaTech}\n${comentarioTecnologia(novaTech)}`);
+                    
+                    let resposta = prompt("Deseja adicionar mais? (OK para continuar)").toLowerCase();
+                    continuar = (resposta === "ok");
+                } else {
+                    continuar = false;
+                }
+            }
+
+            // Resultado final
+            alert("Sua jornada de aprendizado:\n" +
+                `Área: ${area.toUpperCase()}\n` +
+                `Tecnologia Principal: ${tecnologia.toUpperCase()}\n` +
+                `Tecnologias para aprender: ${tecnologias.join(", ")}`);
+        }
+
+        function comentarioTecnologia(tech) {
+            // Função para gerar comentários dinâmicos
+            const comentarios = {
+                "python": "Ótima para automação e IA!",
+                "javascript": "A linguagem da web!",
+                "java": "Amplamente usada em grandes sistemas!",
+                "c#": "Excelente para desenvolvimento de jogos!",
+                "react": "Biblioteca mais popular do mercado!",
+                "vue": "Framework progressivo e versátil!"
+            };
+            
+            return comentarios[tech.toLowerCase()] || "Tecnologia promissora!";
+        }
+    </script>
+</head>
+<body onload="iniciarJogo()">
+    <h1>Jogo de Carreira em Desenvolvimento de Software</h1>
+    <p>Atualização do Dia 3: Controle de Fluxo e Loops</p>
+</body>
+</html>
