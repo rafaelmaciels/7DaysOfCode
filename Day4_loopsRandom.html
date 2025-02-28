@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <script>
+        function jogoAdivinhacao() {
+            // Gera um número aleatório entre 0 e 10
+            const numeroSecreto = Math.floor(Math.random() * 11);
+            let tentativas = 3;
+            let acertou = false;
+
+            alert("Bem-vindo ao Jogo de Adivinhação!\nVocê tem 3 tentativas para adivinhar um número entre 0 e 10.");
+
+            while (tentativas > 0 && !acertou) {
+                let palpite = prompt(`Tentativa ${4 - tentativas} de 3. Qual é o seu palpite?`);
+                palpite = parseInt(palpite);
+
+                if (isNaN(palpite) || palpite < 0 || palpite > 10) {
+                    alert("Por favor, digite um número válido entre 0 e 10.");
+                    continue;
+                }
+
+                if (palpite === numeroSecreto) {
+                    acertou = true;
+                    alert(`Parabéns! Você acertou! O número era ${numeroSecreto}.`);
+                } else {
+                    tentativas--;
+                    if (tentativas > 0) {
+                        alert(`Errou! Você ainda tem ${tentativas} tentativa(s).`);
+                    }
+                }
+            }
+
+            if (!acertou) {
+                alert(`Suas tentativas acabaram. O número secreto era ${numeroSecreto}.`);
+            }
+
+            if (confirm("Deseja jogar novamente?")) {
+                jogoAdivinhacao();
+            } else {
+                alert("Obrigado por jogar!");
+            }
+        }
+    </script>
+</head>
+<body onload="jogoAdivinhacao()">
+    <h1>Jogo de Adivinhação</h1>
+    <p>Tente adivinhar o número secreto entre 0 e 10!</p>
+</body>
+</html>
