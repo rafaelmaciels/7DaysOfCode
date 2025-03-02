@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras Interativa</title>
+    <script>
+        function listaDeCompras() {
+            const lista = {
+                frutas: [],
+                laticinios: [],
+                congelados: [],
+                doces: [],
+                outros: []
+            };
+
+            function exibirLista() {
+                let mensagem = "Lista de compras:\n";
+                for (let categoria in lista) {
+                    if (lista[categoria].length > 0) {
+                        mensagem += `    ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}: ${lista[categoria].join(", ")}\n`;
+                    }
+                }
+                return mensagem;
+            }
+
+            function contarItens() {
+                return Object.values(lista).reduce((total, categoria) => total + categoria.length, 0);
+            }
+
+            while (true) {
+                let totalItens = contarItens();
+                let opcao = prompt(
+                    `O que você deseja fazer?\n1 - Adicionar item\n2 - Remover item${totalItens > 0 ? '' : ' (indisponível)'}\n3 - Ver lista\n4 - Sair`
+                );
+
+                switch (opcao) {
+                    case "1":
+                        let item = prompt("Qual comida você deseja inserir?");
+                        let categoria = prompt("Em qual categoria essa comida se encaixa?\n- Frutas\n- Laticínios\n- Congelados\n- Doces\n- Outros").toLowerCase();
+                        
+                        if (lista[categoria]) {
+                            lista[categoria].push(item);
+                        } else {
+                            lista.outros.push(item);
+                        }
+                        alert(`${item} foi adicionado à categoria ${categoria}.`);
+                        break;
+
+                    case "2":
+                        if (totalItens === 0) {
+                            alert("Não há itens para remover.");
+                            break;
+                        }
+                        let itemRemover = prompt(`${exibirLista()}\nQual item você deseja remover?`);
+                        let removido = false;
+                        for (let categoria in lista) {
+                            let index = lista[categoria].indexOf(itemRemover);
+                            if (index !== -1) {
+                                lista[categoria].splice(index, 1);
+                                alert(`${itemRemover} foi removido da lista.`);
+                                removido = true;
+                                break;
+                            }
+                        }
+                        if (!removido) {
+                            alert("Não foi possível encontrar o item dentro da lista!");
+                        }
+                        break;
+
+                    case "3":
+                        alert(exibirLista());
+                        break;
+
+                    case "4":
+                        alert("Obrigado por usar a Lista de Compras!");
+                        return;
+
+                    default:
+                        alert("Opção inválida. Por favor, escolha uma opção válida.");
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="listaDeCompras()">
+    <h1>Lista de Compras Interativa</h1>
+    <p>Clique em OK para começar a gerenciar sua lista de compras!</p>
+</body>
+</html>
