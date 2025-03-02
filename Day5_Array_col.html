@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras Interativa</title>
+    <script>
+        function listaDeCompras() {
+            let continuar = true;
+            const lista = {
+                frutas: [],
+                laticinios: [],
+                congelados: [],
+                doces: [],
+                outros: []
+            };
+
+            while (continuar) {
+                let adicionarItem = prompt("Deseja adicionar uma comida à lista de compras? (Sim/Não)").toLowerCase();
+                
+                if (adicionarItem === "sim") {
+                    let item = prompt("Qual comida você deseja inserir?");
+                    let categoria = prompt("Em qual categoria essa comida se encaixa?\n- Frutas\n- Laticínios\n- Congelados\n- Doces\n- Outros").toLowerCase();
+
+                    switch (categoria) {
+                        case "frutas":
+                            lista.frutas.push(item);
+                            break;
+                        case "laticinios":
+                        case "laticínios":
+                            lista.laticinios.push(item);
+                            break;
+                        case "congelados":
+                            lista.congelados.push(item);
+                            break;
+                        case "doces":
+                            lista.doces.push(item);
+                            break;
+                        default:
+                            lista.outros.push(item);
+                            break;
+                    }
+                } else if (adicionarItem === "não" || adicionarItem === "nao") {
+                    continuar = false;
+                } else {
+                    alert("Opção inválida. Por favor, responda com 'Sim' ou 'Não'.");
+                }
+            }
+
+            let mensagem = "Lista de compras:\n";
+            for (let categoria in lista) {
+                if (lista[categoria].length > 0) {
+                    mensagem += `    ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}: ${lista[categoria].join(", ")}\n`;
+                }
+            }
+
+            alert(mensagem);
+        }
+    </script>
+</head>
+<body onload="listaDeCompras()">
+    <h1>Lista de Compras Interativa</h1>
+    <p>Clique em OK para começar a criar sua lista de compras!</p>
+</body>
+</html>
