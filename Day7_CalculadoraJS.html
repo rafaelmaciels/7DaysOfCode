@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Interativa</title>
+    <script>
+        // Funções para cada operação
+        function soma(a, b) {
+            return a + b;
+        }
+
+        function subtracao(a, b) {
+            return a - b;
+        }
+
+        function multiplicacao(a, b) {
+            return a * b;
+        }
+
+        function divisao(a, b) {
+            if (b === 0) {
+                return "Erro: Divisão por zero!";
+            }
+            return a / b;
+        }
+
+        // Função principal da calculadora
+        function calculadora() {
+            while (true) {
+                let operacao = prompt(
+                    "Escolha uma operação:\n1 - Soma\n2 - Subtração\n3 - Multiplicação\n4 - Divisão\n5 - Sair"
+                );
+
+                if (operacao === "5") {
+                    alert("Até a próxima!");
+                    break;
+                }
+
+                if (["1", "2", "3", "4"].includes(operacao)) {
+                    let num1 = parseFloat(prompt("Digite o primeiro número:"));
+                    let num2 = parseFloat(prompt("Digite o segundo número:"));
+
+                    let resultado;
+                    switch (operacao) {
+                        case "1":
+                            resultado = soma(num1, num2);
+                            break;
+                        case "2":
+                            resultado = subtracao(num1, num2);
+                            break;
+                        case "3":
+                            resultado = multiplicacao(num1, num2);
+                            break;
+                        case "4":
+                            resultado = divisao(num1, num2);
+                            break;
+                    }
+
+                    alert(`Resultado: ${resultado}`);
+                } else {
+                    alert("Opção inválida!");
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="calculadora()">
+    <h1>Calculadora Interativa</h1>
+    <p>Clique em OK para começar a usar a calculadora!</p>
+</body>
+</html>
